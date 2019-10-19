@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TranslatorAppOnJava</string>
+    <string name="StudyButton">Study</string>
+    <string name="translatorButton">Translate</string>
+    <string name="QuestionWord">Word</string>
+    <string name="AnswerWord">Answer</string>
+    <string name="ChceckAnswer">Right</string>
+    <string name="ButtonExit">Exit</string>
+    <string name="ButtonAnswer">Click</string>
+    <string name="check">0</string>
+</resources>
