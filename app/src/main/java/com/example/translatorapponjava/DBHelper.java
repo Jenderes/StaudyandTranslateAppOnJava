@@ -68,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if(query.moveToFirst()){
             do{
                 ListNames listNames = new ListNames();
-                listNames.setIDList(query.getInt(query.getInt(query.getColumnIndex(LIST_ID))));
+                listNames.setIDList(query.getInt(query.getColumnIndex(LIST_ID)));
                 listNames.setListName(query.getString(query.getColumnIndex(LIST_NAME)));
                 listNames.setCountWord(query.getInt(query.getColumnIndex(LIST_COUNT)));
                 listNames.setSumWordsRightAnswer(query.getInt(query.getColumnIndex(LIST_SUM)));
@@ -84,7 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<WordNames> InpuntWords(String idlist){
         ArrayList<WordNames> ArrayAllWordsList = new ArrayList<WordNames>();
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        Cursor query = sqldb.rawQuery(String.format("SELECT w.IDWord,Word,Translate,CountRepeats FROM word_and_translate w, words_list_connector l, list_names t where w.IDWord = l.WordID and l.ListID = t.IDList and ListName = %s",idlist),null);
+        Cursor query = sqldb.rawQuery(String.format("SELECT w.IDWord,Word,Translate,CountRepeats FROM word_and_translate w, words_list_connector l, list_names t where w.IDWord = l.WordID and l.ListID = t.IDList and IDList = %s",Integer.parseInt(idlist)),null);
         if (query.moveToFirst()){
             do {
                 WordNames wordnames = new WordNames();
@@ -93,10 +93,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 wordnames.setTranslateName(query.getString(query.getColumnIndex(TRANSLATE_NAME)));
                 wordnames.setWordCountRepeat(query.getInt(query.getColumnIndex(COUNT_REPEATS)));
                 ArrayAllWordsList.add(wordnames);
-            } while (query.moveToFirst());
+            } while (query.moveToNext());
         }
         query.close();
         sqldb.close();
         return  ArrayAllWordsList;
     }
+
 }

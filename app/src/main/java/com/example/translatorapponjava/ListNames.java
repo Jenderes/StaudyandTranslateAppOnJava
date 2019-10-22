@@ -21,8 +21,8 @@ public class ListNames {
     public void setCountWord(int countWord) {
         this.CountWord = countWord;
     }
-    public void setIDList(int IDList) {
-        this.IDList = IDList;
+    public void setIDList(int IDLists) {
+        IDList = IDLists;
     }
     public void setListName(String listName) {
         this.ListName = listName;
