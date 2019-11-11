@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -80,11 +81,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return ArrayListNames;
     }
-
     public ArrayList<WordNames> InpuntWords(String idlist){
         ArrayList<WordNames> ArrayAllWordsList = new ArrayList<WordNames>();
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        Cursor query = sqldb.rawQuery(String.format("SELECT w.IDWord,Word,Translate,CountRepeats FROM word_and_translate w, words_list_connector l, list_names t where w.IDWord = l.WordID and l.ListID = t.IDList and IDList = %s",Integer.parseInt(idlist)),null);
+        Cursor query = sqldb.rawQuery(String.format("SELECT w.IDWord,Word,Translate,CountRepeats FROM word_and_translate w, words_list_connector l, list_names t where w.IDWord = l.WordID and l.ListID = t.IDList and IDList = %s and w.CountRepeats < 6",Integer.parseInt(idlist)),null);
         if (query.moveToFirst()){
             do {
                 WordNames wordnames = new WordNames();
@@ -99,5 +99,12 @@ public class DBHelper extends SQLiteOpenHelper {
         sqldb.close();
         return  ArrayAllWordsList;
     }
-
+    public void UpdateWordCount(ArrayList<WordNames> arw){
+        SQLiteDatabase dbsql = this.getWritableDatabase();
+        for (int i = 0; i < arw.size(); i++){
+           ContentValues cv = new ContentValues();
+           cv.put(COUNT_REPEATS,arw.get(i).getWordCountRepeat());
+           int UpdateCount = dbsql.update(TRANSLATE_TABLE_NAME,cv,"id = ?",new String[]{Integer.toString(arw.get(i).getWordID())});
+        }
+    }
 }

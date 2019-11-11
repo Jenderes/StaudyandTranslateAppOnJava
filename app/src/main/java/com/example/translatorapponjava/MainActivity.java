@@ -38,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                Intent intent = new Intent(MainActivity.this, StudyActivity.class);
-                intent.putExtra("IDList", ListNames.get(pos).getIDList());
-                intent.putExtra("NameList", ListNames.get(pos).getListName());
-                startActivity(intent);
-                Toast.makeText(MainActivity.this, "item Onclick: "+pos, Toast.LENGTH_LONG).show();
+                Intent MenuListIntent = new Intent(MainActivity.this, MenuList.class);
+                MenuListIntent.putExtra("IDList", ListNames.get(pos).getIDList());
+                MenuListIntent.putExtra("NameList", ListNames.get(pos).getListName());
+                MenuListIntent.putExtra("CountWord", ListNames.get(pos).getCountWord());
+                MenuListIntent.putExtra("Percent", ListNames.get(pos).getPercent());
+                startActivity(MenuListIntent);
             }
         });
     }
@@ -55,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                Intent intent = new Intent(MainActivity.this, StudyActivity.class);
+                Intent intent = new Intent(MainActivity.this, MenuList.class);
                 intent.putExtra("IDList", ListNames.get(pos).getIDList());
                 intent.putExtra("NameList", ListNames.get(pos).getListName());
                 startActivity(intent);
-                Toast.makeText(MainActivity.this, "item Onclick: "+pos, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "item Onclick: "+pos, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -68,6 +69,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,TranslatorActivity.class);
         startActivity(intent);
         this.overridePendingTransition(0, 0);
-
     }
 }

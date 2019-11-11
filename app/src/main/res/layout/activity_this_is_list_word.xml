@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ThisIsListWord">
+    <RelativeLayout
+        android:id="@+id/NameWordList"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/ColorBackMenuList">
+        <TextView
+            android:id="@+id/NameListAllList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="45sp"
+            android:text="Basic"
+            android:textColor="@color/ColorWhite"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+        <ListView
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/NameWordList"
+            android:id="@+id/AllWordsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="10.0sp"
+            android:divider="@null"/>
+</RelativeLayout>

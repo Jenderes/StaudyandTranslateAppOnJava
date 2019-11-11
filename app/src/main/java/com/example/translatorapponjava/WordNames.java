@@ -33,7 +33,7 @@ public class WordNames {
     }
 
     public void ChangePlusCount(){
-        this.WordCountRepeat = this.WordCountRepeat < 5 ? this.WordCountRepeat + 1 : this.WordCountRepeat;
+        this.WordCountRepeat = this.WordCountRepeat < 6 ? this.WordCountRepeat + 1 : this.WordCountRepeat;
     }
     public void ChangeMinusCount(){
         this.WordCountRepeat = this.WordCountRepeat >= 2 ? this.WordCountRepeat - 2 : 0;
